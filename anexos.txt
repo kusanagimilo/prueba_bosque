@@ -1,0 +1,29 @@
+III. Además de la documentación solicitada en el punto I, basado en su experiencia,
+qué otra documentación usted recomendaría utilizar con el fin de asegurar la
+calidad del producto final?
+
+
+Los diagramas que recomendaría serian los flujogramas, diagrama de paquetes y
+ no se si es un diagrama uml pero recomendaría los muckups para poder tener una 
+visualización de las pantallas y que comportamiento tendrán.
+
+IV. Suponga que este proyecto debiera ser desarrollado entre usted y otras 2 personas
+mas, que metodología de desarrollo recomendaría para esa tarea y porqué?
+
+La metodología que usaría para desarrollar este proyecto seria SCRUM, la primera razón es que SCRUM es muy 
+conocida y esta siendo implementado en varias compañías con resultados beneficiosos.
+Scrum me permite tomar mi equipo de desarrollo e inmiscuirlo en varios ciclos de el desarrollo de el proyecto. 
+Y si nos basamos en los 11 principios para implementar scrum el proyecto tendrá un solo camino de éxito.
+
+1. Elige un responsable de producto.
+2. Elige un equipo.
+3. Elige un Scrum Master.
+4. Elabora y prioriza una lista de objetivos o backlog.
+5. Haz una estimación afinada de la lista de objetivos pendientes.
+6. Planificación de sprints.
+7. Haz que el trabajo sea visible.
+8 Scrum Diario. Reunión Diaria de pie.
+9 Revisión o demostración del sprint.
+10 Retrospectiva del sprint.
+11 Empieza inmediatamente el siguiente ciclo de sprints.
+
