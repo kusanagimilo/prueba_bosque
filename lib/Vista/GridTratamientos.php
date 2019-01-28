@@ -13,6 +13,7 @@
     </thead>
 </table>
 <div id="dialog_n_tratamiento"></div>
+<div id="dialog_edt_tratamiento"></div>
 <script>
     var json = ListarTratamientos();
 

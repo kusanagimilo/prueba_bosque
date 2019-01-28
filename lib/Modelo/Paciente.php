@@ -57,4 +57,33 @@ class Paciente {
         return $json;
     }
 
+    public function InformacionPaciente($data) {
+        $utilidades = new UtilidadesBD();
+        $sentencia = "SELECT idpaciente,nombres,apellidos,tipo_documento,numero_documento,ciudad_residencia,direccion,telefono 
+                      FROM paciente WHERE tipo_documento=:tipo_documento AND numero_documento=:numero_documento";
+        $parametros = array('tipo_documento' => $data['tipo_documento'], 'numero_documento' => $data['numero_documento']);
+        $arreglo = $utilidades->Datos($sentencia, $parametros);
+        $json = json_encode($arreglo);
+        return $json;
+    }
+
+    public function CrearTratamientoPaciente($data) {
+        $utilidades = new UtilidadesBD();
+        /* campos de la tabla */
+        $campos = array('idtratamiento',
+            'idpaciente',
+            'valor');
+        /* valores que llegan desde el control */
+        $valores = array('idtratamiento' => (int)$data['idtratamiento'],
+            'idpaciente' => (int)$data['idpaciente'],
+            'valor'=>(double)$data['valor']);
+        //return var_dump($valores);
+        $retorno = $utilidades->Insertar('paciente_tratamiento', $campos, $valores);
+        if ($retorno == "error") {
+            return 3;
+        } else if ($retorno == 'ingreso') {
+            return 1;
+        }
+    }
+
 }

@@ -80,3 +80,96 @@ function ListarPacientesGrid() {
     });
 
 }
+
+function TratamientoPaciente() {
+    var data;
+    $.ajax({
+        type: "POST",
+        url: "lib/Vista/TratamientoPaciente.php",
+        async: false,
+        success: function (retu) {
+            data = retu;
+        }
+    });
+    $("#contenido").html(data);
+}
+
+
+function InformacionPaciente(numero_documento, tipo_documento) {
+    var data;
+    $.ajax({
+        type: "POST",
+        url: "lib/Control/ControlPaciente.php",
+        async: false,
+        dataType: 'json',
+        data: {
+            opcion: 'InformacionPaciente',
+            tipo_documento: tipo_documento,
+            numero_documento: numero_documento
+        },
+        success: function (retu) {
+            data = retu;
+        }
+    });
+
+    return data;
+}
+
+function TratamientoPacienteForm() {
+
+    var tipo_documento = $("#tipo_documento").val();
+    var numero_documento = $("#numero_documento").val();
+
+    if (tipo_documento == "" || numero_documento == "") {
+        alert("Seleccione los filtros para realizar la busqueda");
+    } else {
+        var json = InformacionPaciente(numero_documento, tipo_documento);
+        if (json.length == 0) {
+            $("#forma_tratamiento_paciente").html("<div class='alert alert-danger' role='alert'>No se encontro el paciente</div>");
+        } else if (json.length > 0) {
+
+            var form;
+            $.ajax({
+                type: "POST",
+                url: "lib/Vista/TratamientoPacienteForm.php",
+                async: false,
+                data: {
+                    idpaciente: json[0].idpaciente,
+                    nombres: json[0].nombres,
+                    apellidos: json[0].apellidos,
+                    ciudad_residencia: json[0].ciudad_residencia
+
+                },
+                success: function (retorno) {
+                    form = retorno;
+                }
+            });
+            $("#forma_tratamiento_paciente").html(form);
+        }
+    }
+
+}
+
+function CrearTratamientoPaciente(idpaciente) {
+    var data;
+    $.ajax({
+        type: "POST",
+        url: "lib/Control/ControlPaciente.php",
+        async: false,
+        data: {
+            opcion: 'CrearTratamientoPaciente',
+            idpaciente: $.trim(idpaciente),
+            idtratamiento: $.trim($("#tratamiento").val()),
+            valor: $("#valor_tratamiento").val()
+        },
+        success: function (retu) {
+            data = retu;
+        }
+    });
+    if (data == 1) {
+        alert("Se ingreso correctamente el tratamiento para el paciente");
+        TratamientoPacienteForm();
+    } else if (data == 3) {
+        alert("Error al tratar de almacenar el paciente");
+    }
+}

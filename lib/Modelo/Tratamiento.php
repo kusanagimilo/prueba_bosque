@@ -40,8 +40,19 @@ class Tratamiento {
         }
     }
 
-    public function EliminarTratamiento($param) {
-        
+    public function EliminarTratamiento($data) {
+        $utilidades = new UtilidadesBD();
+        $campos = array('estado');
+
+        $valores = array('idtratamiento' => $data['idtratamiento'],
+            'estado' => 0);
+        $retorno = $utilidades->Editar('tratamiento', $campos, $valores, 'idtratamiento');
+
+        if ($retorno == "error") {
+            return 3;
+        } else if ($retorno == 'edito') {
+            return 1;
+        }
     }
 
     public function EditarTratamiento($data) {
@@ -56,7 +67,11 @@ class Tratamiento {
             'descuento' => $data['descuento']);
         $retorno = $utilidades->Editar('tratamiento', $campos, $valores, 'idtratamiento');
 
-        return $retorno;
+        if ($retorno == "error") {
+            return 3;
+        } else if ($retorno == 'edito') {
+            return 1;
+        }
     }
 
     public function ListarTratamientos($data) {
@@ -78,13 +93,31 @@ class Tratamiento {
             $arreglo_interior = array($value['nombre_tratamiento'],
                 $value['valor_tratamiento'],
                 $descuento,
-                "<input type='button' class='btn btn-default' value='Editar' onclick='EditarTratamiento(" . $value['idtratamiento'] . ")'>",
-                "<input type='button' class='btn btn-danger' value='Eliminar'>");
+                "<input type='button' class='btn btn-default' value='Editar' onclick='DialogModificarTratamiento(" . $value['idtratamiento'] . ")'>",
+                "<input type='button' class='btn btn-danger' value='Eliminar' onclick='EliminarTratamiento(" . $value['idtratamiento'] . ")'>");
             array_push($arreglo_retorno, $arreglo_interior);
         }
 
         $json = json_encode($arreglo_retorno);
 
+        return $json;
+    }
+
+    public function InformacionTratamiento($data) {
+        $utilidades = new UtilidadesBD();
+        $sentencia = "SELECT idtratamiento,nombre_tratamiento,valor_tratamiento,descuento FROM tratamiento WHERE idtratamiento=:idtratamiento";
+        $parametros = array('idtratamiento' => $data['idtratamiento']);
+        $arreglo = $utilidades->Datos($sentencia, $parametros);
+        $json = json_encode($arreglo);
+        return $json;
+    }
+
+    public function SelectTratamientos($data) {
+        $utilidades = new UtilidadesBD();
+        $sentencia = "SELECT idtratamiento,nombre_tratamiento FROM tratamiento WHERE estado=:estado";
+        $parametros = array('estado' => 1);
+        $arreglo = $utilidades->Datos($sentencia, $parametros);
+        $json = json_encode($arreglo);
         return $json;
     }
 

@@ -10,12 +10,24 @@ switch ($opcion) {
         echo $retorno;
         break;
     case 'EliminarTratamiento':
+        $retorno = $obj_tratamiento->EliminarTratamiento($_POST);
+        echo $retorno;
         break;
     case 'ListarTratamientos':
         $retorno = $obj_tratamiento->ListarTratamientos("");
         echo $retorno;
         break;
     case 'EditarTratamiento':
+        $retorno = $obj_tratamiento->EditarTratamiento($_POST);
+        echo $retorno;
+        break;
+    case 'SelectTratamientos':
+        $retorno = $obj_tratamiento->SelectTratamientos("");
+        echo $retorno;
+        break;
+    case 'InformacionTratamiento':
+        $retorno = $obj_tratamiento->InformacionTratamiento($_POST);
+        echo $retorno;
         break;
 }
 

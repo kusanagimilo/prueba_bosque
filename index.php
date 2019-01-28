@@ -11,6 +11,7 @@
         <script src="js/jquery.dataTables.js"></script>
         <script src="js/Paciente.js"></script>
         <script src="js/tratamiento.js"></script>
+        <script src="js/informes.js"></script>
         <script src="js/jquery_validate.js"></script>
         <script src="js/select2/select2.js"></script>
         <link href="js/select2/select2.css" rel="stylesheet" id="bootstrap-css">
@@ -47,6 +48,11 @@
                                             <span class="glyphicon glyphicon-th-list"></span><a href="#" onclick="ListarPacientesGrid()">Ver pacientes registrados</a>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="glyphicon glyphicon-list-alt"></span><a href="#" onclick="TratamientoPaciente()">Tratamiento por paciente</a>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -64,6 +70,36 @@
                                     <tr>
                                         <td>
                                             <span class="glyphicon glyphicon-plus"></span><a href="#" onclick="GridTratamientos()">Administracion tratamientos</a>
+                                        </td>
+                                    </tr>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTree"><span class="glyphicon glyphicon-stats">
+                                    </span>Reportes</a>
+                            </h4>
+                        </div>
+                        <div id="collapseTree" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <table class="table">
+                                    <tr>
+                                        <td>
+                                            <span class="glyphicon glyphicon-usd"></span><a href="#" onclick="VistaCantidadIngresos()">Ingresos mensuales</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="glyphicon glyphicon-dashboard"></span><a href="#" onclick="VistaVisitasHospital()">3 meses en que + visitan el hospital</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span class="glyphicon glyphicon-eye-open"></span><a href="#" onclick="VistaRazonVisitaComun()">Razon de visita</a>
                                         </td>
                                     </tr>
 
