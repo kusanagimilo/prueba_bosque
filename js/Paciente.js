@@ -173,3 +173,46 @@ function CrearTratamientoPaciente(idpaciente) {
         alert("Error al tratar de almacenar el paciente");
     }
 }
+function Hover() {
+    var data;
+    $.ajax({
+        type: "POST",
+        url: "lib/Control/ControlPaciente.php",
+        async: false,
+        dataType: 'json',
+        data: {
+            opcion: 'ListarPacientesGrid'
+        },
+        success: function (retu) {
+            data = retu;
+        }
+    });
+    $("#contenido").html("");
+    //console.log(data);
+    var html = '<div style="overflow-x: auto;">' +
+            '<table class="table table-hover">' +
+            '<tr id="nombre_ap">' +
+            '<td style="background-color: #cccccc">Nombre y apellidos</td>' +
+            '</tr>' +
+            '<tr id="documen">' +
+            '<td style="background-color: #cccccc">Documento</td>' +
+            '</tr>' +
+            '<tr id="dire_tel">' +
+            '<td style="background-color: #cccccc">Direccion y telefono</td>' +
+            '</tr>' +
+            '</table>' +
+            '</div>';
+    $("#contenido").html(html);
+    $.each(data, function (key, datos) {
+        var nombres_apelli = "<td>" + datos.nombres + " " + datos.apellidos + "</td>";
+        var documento = "<td>" + datos.tipo_documento + " " + datos.numero_documento + "</td>";
+        var dire_tel = "<td>" + datos.ciudad_residencia + " " + datos.direccion + " , " + datos.telefono + "</td>";
+
+        $("#nombre_ap").append(nombres_apelli);
+        $("#documen").append(documento);
+        $("#dire_tel").append(dire_tel);
+    });
+
+
+
+}

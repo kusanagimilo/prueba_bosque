@@ -50,6 +50,11 @@
                                     </tr>
                                     <tr>
                                         <td>
+                                            <span class="glyphicon glyphicon-th-list"></span><a href="#" onclick="Hover()">Ver pacientes registrados hover</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
                                             <span class="glyphicon glyphicon-list-alt"></span><a href="#" onclick="TratamientoPaciente()">Tratamiento por paciente</a>
                                         </td>
                                     </tr>
@@ -115,10 +120,8 @@
                 <div class="well" id="contenido">
 
 
-
                 </div>
             </div>
-        </div>
 
 
     </body>
